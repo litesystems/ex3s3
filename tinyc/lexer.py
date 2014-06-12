@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function, unicode_literals
+import sys
 
 from ply import lex
 
@@ -50,7 +51,11 @@ class Lexer(object):
         t.lexer.lineno += len(t.value)
 
     def t_error(self, t):
-        print("Illegal character '{0}'".format(t.value[0]))
+        print(
+            "Line {line}: Illegal character '{value}'.".format(
+                line=t.lineno,
+                value=t.value[0]),
+            file=sys.stderr)
         t.lexer.skip(1)
 
     def build(self, **kwargs):

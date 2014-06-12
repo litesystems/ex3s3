@@ -4,7 +4,6 @@
 from __future__ import unicode_literals
 import sys
 
-from tinyc.lexer import Lexer
 from tinyc.parser import Parser
 
 if __name__ == '__main__':

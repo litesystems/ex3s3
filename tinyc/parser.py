@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import print_function
+import sys
 
 from ply import yacc
 
@@ -160,11 +161,15 @@ class Parser(object):
         pass
 
     def p_error(self, t):
-        print("Syntax error at '%s'" % t.value)
-        print(t)
+        message = "Line {line}: Syntax error at '{value}'. "
+        print(
+            message.format(
+                line=t.lineno,
+                value=t.value),
+            file=sys.stderr)
 
     precedence = (
-        ('left', 'PLUS', 'MINUS'),
+        ('right', 'ELSE',),
     )
 
     def build(self, **kwargs):
