@@ -1,0 +1,14 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from __future__ import unicode_literals
+import sys
+
+from tinyc.lexer import Lexer
+from tinyc.parser import Parser
+
+if __name__ == '__main__':
+    parser = Parser()
+    parser.build()
+    data = sys.stdin.read()
+    parser.parse(data)
